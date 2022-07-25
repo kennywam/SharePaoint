@@ -44,6 +44,14 @@ export default class LeaverequestWebPart extends BaseClientSideWebPart<ILeavereq
     );
 
     this.__themeVariant = this._themeProvider.tryGetTheme();
+    this.onThemeChangedEvent.add(
+      this,
+      this._handleThemeChangedEvent
+    );
+  }
+  private _handleThemeChangedEvents(args: ThemeChangedEventArgs): void {
+
+
     this._themeVariant = args.theme;
     this.render();
   }
@@ -53,11 +61,15 @@ export default class LeaverequestWebPart extends BaseClientSideWebPart<ILeavereq
     const element: React.ReactElement<ILeaverequestProps> = React.createElement(
       Leaverequest,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        documentTitle: this.properties.documentTitle,
+        currentUserDisplayName: this.context.pageContext.user.displayName,
+        storagelist: this.properties.storageList,
+        acknowledgementLabel: this.properties.acknowledgementlabel,
+        acknowledgmentMessage: this.properties.acknowledgementMessage,
+        readMessage: this.properties.readMessage,
+        themeVariant: this, themeVariant,
+        configured: this.properties.storageList ? this.properties.storageList != '' : false,
+        context: this.context
       }
     );
 
