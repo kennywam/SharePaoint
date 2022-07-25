@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "leaverequest-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/leaverequest/LeaverequestWebPart.js",
+          "manifest": "./src/webparts/leaverequest/LeaverequestWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "LeaverequestWebPartStrings": "lib/webparts/leaverequest/loc/{locale}.js"
+  }
+}

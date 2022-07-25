@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.0",
+    "libraryName": "leaverequest",
+    "libraryId": "a6fd0048-39a9-457c-93b4-ae0e41ee2ee9",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "leaverequest",
+    "solutionShortDescription": "leaverequest description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
