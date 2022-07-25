@@ -12,13 +12,41 @@ import * as strings from 'LeaverequestWebPartStrings';
 import Leaverequest from './components/Leaverequest';
 import { ILeaverequestProps } from './components/ILeaverequestProps';
 
+import { sp } from "@pnp/sp/preset/all";
+
+import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls';
+
+import {
+  ThemeProvider,
+  ThemeChangedEventArgs,
+  IReadonlyTheme,
+} from 'office-ui-fabric-react/lib/Foundation';
+
 export interface ILeaverequestWebPartProps {
   description: string;
+  storageList: string;
+  acknowledgementMessage: string;
+  readMessage: string;
 }
 
 export default class LeaverequestWebPart extends BaseClientSideWebPart<ILeaverequestWebPartProps> {
 
-  private _isDarkTheme: boolean = false;
+  private _themeProvider: ThemeProvider;
+  private _themeVariant: IReadonlyTheme | undefined;
+
+  protected async onInit(): Promise<void> {
+    await super.onInit();
+
+    sp.setup(this.context);
+
+    this._themeProvider = this.context.serviceScope.consume(
+      ThemeProvider.serviceKey
+    );
+
+    this.__themeVariant = this._themeProvider.tryGetTheme();
+    this._themeVariant = args.theme;
+    this.render();
+  }
   private _environmentMessage: string = '';
 
   public render(): void {
