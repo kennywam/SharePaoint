@@ -21,6 +21,7 @@ import {
   ThemeChangedEventArgs,
   IReadonlyTheme,
 } from 'office-ui-fabric-react/lib/Foundation';
+import { includes, orderBy } from 'lodash';
 
 export interface ILeaverequestWebPartProps {
   description: string;
@@ -127,14 +128,25 @@ export default class LeaverequestWebPart extends BaseClientSideWebPart<ILeavereq
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
+                label: string.StorageListLabel,
+                selectedList: this.properties.storageList,
+                includeHidden: false,
+                orderBy: PropertyFieldListPickerOrderBy.Title,
+                disabled: false,
+                onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                properties: this.properties,
+                context: this.context,
+                onGetErrorMessage: null,
+                deferredValidationTime: 0,
+                key: 'listpickerField',
+                multiSelect: false,
+                baseTemplate: 100
+                  })
           ]
         }
       ]
-    };
-  }
+    }
+      ]
+  };
+}
 }
